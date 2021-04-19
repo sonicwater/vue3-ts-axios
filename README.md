@@ -1,4 +1,4 @@
-# vue3-ts-sonic
+# vue3-ts-axios
 
 ## Project setup
 ```
@@ -15,5 +15,3 @@ yarn serve
 yarn build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
