@@ -20,12 +20,18 @@ export default defineComponent({
   //   HelloWorld,
   // },
   setup() {
+
+    
+    
+    
+
   	onMounted(()=>{
   		login({
   			username:'admin',
   			password:'123456'
   		});
-  	})
+
+  	});
   }
 });
 </script>
