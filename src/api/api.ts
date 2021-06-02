@@ -5,7 +5,7 @@ import { ElMessage } from 'element-plus'
 import { IResponse, ILogin } from './type';
 
 let axiosInstance:AxiosInstance = axios.create({
-  baseURL: process.env.VUE_APP_BASE_URL + "/api/v1/",
+  baseURL: process.env.VUE_APP_BASE_URL, // + "/api/v1/",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/x-www-form-urlencoded"
