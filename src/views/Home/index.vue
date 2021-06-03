@@ -1,29 +1,28 @@
 <template>
   <layout>
-    sonic
+    <router-view v-slot="{ Component }">
+      <via-fade-transform>
+        <keep-alive>
+          <component
+            :is="Component"
+          />
+        </keep-alive>
+      </via-fade-transform>
+    </router-view>
   </layout>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
-import Layout from './Layout/index.vue'; 
+// import { defineComponent, onMounted } from 'vue';
+import Layout from './Layout/index.vue';
+import ViaFadeTransform from "@/components/ViaFadeTransform.vue";
 
 
-export default defineComponent({
+export default {
   name: 'Home',
   components: {
-    Layout,
-  },
-  setup() {
-
-    
-    
-    
-
-  	onMounted(()=>{
-  		
-
-  	});
+    Layout,ViaFadeTransform
   }
-});
+};
 </script>
+

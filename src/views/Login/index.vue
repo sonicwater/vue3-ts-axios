@@ -83,7 +83,7 @@ export default {
             router.push({
               name: 'Home',
               query:{
-                str:''
+                str:'Home'
               }
             });
             return;
@@ -109,8 +109,6 @@ export default {
         password:'111111q'
       });
     }
-
-    
 
     // Hooks
     onMounted(()=>{
