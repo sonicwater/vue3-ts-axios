@@ -11,7 +11,9 @@
       class="flex-grow h-full flex flex-col overflow-hidden"
       style="background-color:#F7F8FA;"
     >
-      <slot></slot>1
+      <main-content class="flex-grow">
+        <slot></slot>
+      </main-content>
     </div>
   </div>
 </template>
@@ -24,11 +26,12 @@ import {
 } from 'vue';
 import Topbar from "./Topbar/index.vue";
 import Sidebar from "./Sidebar/index.vue";
+import MainContent from "./MainContent/index.vue";
 
 export default defineComponent({
   name: 'Layout',
   components: {
-    Sidebar,Topbar
+    Sidebar,Topbar,MainContent
   },
   setup() {
 

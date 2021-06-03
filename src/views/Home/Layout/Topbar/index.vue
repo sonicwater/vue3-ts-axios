@@ -10,7 +10,7 @@
         <el-col :span="12" class="pr-14 text-right">
           <el-dropdown>
             <span class="el-dropdown-link">
-              <i class="el-icon-user-solid"></i>
+              <i class="el-icon-user-solid" style="color:#fff"></i>
             </span>
             <template #dropdown>
               <el-dropdown-menu>
@@ -20,7 +20,7 @@
           </el-dropdown>
         </el-col>
       </el-row>
-       
+      
     </div>
   </el-affix>
 </template>

@@ -3,7 +3,7 @@
     <div
       class="items-center cursor-pointer"
       style="text-align:left !important;"
-      @click="router.push({ name: 'Home' })"
+      @click="goHome"
     >
       <img
         src="@/assets/images/logo.svg"
@@ -18,14 +18,19 @@
 
 <script lang="ts">
 import { useRouter } from 'vue-router';
-const router = useRouter();
+
 export default {
   name:"logo",
   setup(){
 
-    const goHome:Function = ():void => {
+    const router = useRouter();
 
+    const goHome:Function = ():void => {
+      router.push({
+        name:'Home'
+      })
     }
+
     return {
       router
     }

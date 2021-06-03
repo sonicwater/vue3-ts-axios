@@ -14,7 +14,19 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/home',
     name: 'Home',
-    component: () => import('@/views/Home/index.vue')
+    component: () => import('@/views/Home/index.vue'),
+    children:[
+      {
+        path: '/home/data-table-1',
+        name: 'DataTable1',
+        component: () => import('@/views/Home/Pages/DataTable/DataTable1.vue')
+      },
+      {
+        path: '/home/data-table-2',
+        name: 'DataTable2',
+        component: () => import('@/views/Home/Pages/DataTable/DataTable2.vue')
+      }
+    ]
   }
 ]
 

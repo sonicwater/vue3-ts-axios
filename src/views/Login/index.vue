@@ -81,10 +81,7 @@ export default {
           if( res.code == 200 ){
             ElMessage.success(res.msg);
             router.push({
-              name: 'Home',
-              query:{
-                str:'Home'
-              }
+              name: 'DataTable1'
             });
             return;
           }
