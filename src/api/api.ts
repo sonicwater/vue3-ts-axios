@@ -1,4 +1,4 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
+import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse, Canceler } from 'axios';
 import qs from 'qs'
 import { showMessage } from "./status";
 import { ElMessage } from 'element-plus'
@@ -51,12 +51,30 @@ axiosInstance.interceptors.response.use(
   }
 );
 
+let sourceAjaxList: Canceler[] = [];
+
 // axios实例拦截请求
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+
+    console.log(config);
+
     // const { user } = store.state
     // if (token) {
     //   config.headers.Authorization = `Bearer ${token}`
+    // }
+
+    // 设置 cancel token  用于取消请求 (当一个接口出现401后，取消后续多有发起的请求，避免出现好几个错误提示)
+    config.cancelToken = new axios.CancelToken(function executor(cancel: Canceler): void {
+      sourceAjaxList.push(cancel)
+    })
+
+    // 存在 sessionId 为所有请求加上 sessionId
+    // if (localStorage.getItem(`h5_sessionId`) && config.url!.indexOf('/user/login') < 0) {
+    //   config.url += ('sessionId=' + localStorage.getItem(`h5_sessionId`));
+    // }
+    // if (!config.data){
+    //   config.data = {}
     // }
     return config;
   },

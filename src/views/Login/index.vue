@@ -43,7 +43,15 @@
           >Reset</el-button>
         </el-form-item>
       </el-form>
+
+      {{testModuleName}}-
+      {{testModuleCount}}
+      <el-button
+        type="success"
+        @click="handlerCount"
+      >add</el-button>
     </div>
+    
   </div>
 </template>
 
@@ -54,18 +62,26 @@ import {
   ref,Ref,
   reactive,
   toRefs,
-  // nextTick,
-  onMounted
+  nextTick,
+  onMounted,
+  computed
 } from 'vue';
 import { ElDialog, ElMessage } from 'element-plus'
 import { useFormLogin } from './use-state'
-// import { ILogin } from '@/api/type';
 import { login } from '@/api/api';
 import { useRouter } from 'vue-router';
+import { useStore } from '@/store';
 const { log, info, warn, error } = console;
 export default {
   name: 'login',
   setup(){
+
+    const store = useStore();
+    const testModuleName = computed(()=>store.getters['test/getTestName']);
+    const testModuleCount = computed(()=>store.getters['test/getTestCount']);
+    const handlerCount = () => {
+      store.commit('test/ADD_COUNT');
+    }
 
     const router = useRouter();
     
@@ -80,6 +96,7 @@ export default {
           log(JSON.stringify(res));
           if( res.code == 200 ){
             ElMessage.success(res.msg);
+            store.dispatch('user/setToken',res.data.token);
             router.push({
               name: 'DataTable1'
             });
@@ -109,12 +126,13 @@ export default {
 
     // Hooks
     onMounted(()=>{
-      
+      log(store.getters['user/getToken']);
     });
 
     return {
       formLoginRef, formLogin, rulesLogin,
-      doLogin,doReset
+      doLogin,doReset,
+      testModuleName,testModuleCount,handlerCount
     }
   }
 }
@@ -133,7 +151,7 @@ export default {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -80%);
+    transform: translate(-50%, -60%);
     
   }
 }
